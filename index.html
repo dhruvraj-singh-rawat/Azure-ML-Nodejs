@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>form</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
 </head>
 
 <body>
     <div class="contact-clean">
-        <form method="post" onsubmit="return testingAPI();">
+        <form method="post" onsubmit="testingAPI()">
             <h2 class="text-center">Solar Prediction</h2>
             <div class="form-group">
             	<input class="form-control" type="text" id="Temperature" placeholder="Temperature" name="Temperature">
@@ -35,87 +35,51 @@
             <div class="form-group"><button class="btn btn-primary" type="submit">Predict </button></div>
         </form>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
-   <!--  <script>
-
-        $(function (){
-          $.ajax({
-            
-          });
-          //var $Temperature= document.getElementById('Temperature').value
-          //console.log(Temperature);
-        });
-    </script> -->
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script>
-		// function submitForm(oFormElement)
-		// {
-		//   var xhr = new XMLHttpRequest();
-		//   xhr.onload = function(){ alert (xhr.responseText); } // success case
-		//   xhr.onerror = function(){ alert (xhr.responseText); } // failure case
-		//   xhr.open (oFormElement.method, oFormElement.action, true);
-		//   xhr.send (new FormData (oFormElement));
-		//   return false;
-		// }
-		function testingAPI(){
-			var temp = document.getElementById('Temperature').value;
-			var hum = document.getElementById('Humidity').value;
-			var wind = document.getElementById('WindSpeed').value;
-			var visi = document.getElementById('Visibility').value;
-			var Serial = document.getElementById('Serial').value;
-
-
-			var data = {
-				"Inputs": {
-				    "input1": {
-				      "ColumnNames": [
-				        "Temperature",
-				        "Humidity",
-				        "WindSpeed",
-				        "Visibility",
-				        "Serial"
-				      ],
-				      "Values": [
-				        [
-				          temp,
-				          hum,
-				          wind,
-				          visi,
-				          Serial
-				        ]
-				      ]
-				    }
-				  },
-				  "GlobalParameters": {}
-			};
-			console.log(data);
-			var data1 = JSON.stringify(data);
-			console.log(data1);
-			var key = "Xbub+zDBPW0sb//q9qezDNzDBMBFsnCZW3Dyvj0fYL8E8eQhm4eLKITWNvOF3/nkwOaWUsyS0ZSTCAjmdbn+7Q==";
-
-			$.ajax({
-		        url: "https://ussouthcentral.services.azureml.net/workspaces/9e3d31bd96144044b5e17022b523a47f/services/cf3b05bc4e5a43ebae5489767f6da251/execute?api-version=2.0&details=true",
-		        type: 'POST',           
-		        data: data1,            
-		        dataType:'jsonp', 
-		        crossDomain: true,                       
-		        headers: {
-		        "Content-Type":"application/json",            
-		        "Authorization":"Bearer " + key                       
-		        },
-		        success: function (data) {
-		          console.log('Success');
-		        },
-		        error: function (data) {
-		           console.log('Failure ' +  data.statusText + " " + data.status);
-		        },
-			
-			});
-			
-
-		}
-		
+			function testingAPI(){
+				var temp = document.getElementById('Temperature').value;
+				var hum = document.getElementById('Humidity').value;
+				var wind = document.getElementById('WindSpeed').value;
+				var visi = document.getElementById('Visibility').value;
+				var Serial = document.getElementById('Serial').value;
+				var data = {
+					"Inputs": {
+							"input1": {
+								"ColumnNames": [
+									"Temperature",
+									"Humidity",
+									"WindSpeed",
+									"Visibility",
+									"Serial"
+								],
+								"Values": [
+									[
+										temp,
+										hum,
+										wind,
+										visi,
+										Serial
+									]
+								]
+							}
+						},
+						"GlobalParameters": {}
+				};
+				console.log(data);
+				var data1 = JSON.stringify(data);
+				console.log(data1);
+				var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+							alert(xmlhttp.responseText);
+					}
+				}				
+				xmlhttp.open("POST", "/request", false);
+				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+				xmlhttp.send(JSON.stringify(data));
+			}
 	</script>
 </body>
 

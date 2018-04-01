@@ -1,0 +1,23 @@
+{
+  "name": "solarpredict",
+  "version": "1.0.0",
+  "description": "Qt UI based Data science project to predict PV output of any future date\r ..",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvraj-singh-rawat/SolarPredict.git"
+  },
+  "author": "Dhruvraj Singh Rawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhruvraj-singh-rawat/SolarPredict/issues"
+  },
+  "homepage": "https://github.com/dhruvraj-singh-rawat/SolarPredict#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
+}
